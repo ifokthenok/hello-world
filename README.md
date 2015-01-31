@@ -1,4 +1,4 @@
 hello-world
 ===========
 
-A hello-world project used only for testing.
+A hello-world project used only for learning git usage:)
