@@ -1,6 +1,6 @@
 @startuml
 hide footbox
-participant Main            as main
+participant "main()"            as main
 participant ArgumentParser  as argument
 participant ErrorChecker    as checker
 participant ErrorCollector      as db
@@ -20,7 +20,7 @@ main <--db: setVerboseLevel() done
 deactivate db
 ...
 loop file in files
-main -> checker: checkFile(file)
+main -> checker: check(file)
 activate checker
 loop checker in error checkers
 checker -> checker: call checker to check file
@@ -32,7 +32,7 @@ checker <-- db:reportError() done
 deactivate db
 end
 end
-main <-- checker: checkFile() done
+main <-- checker: check() done
 deactivate checker
 end
 ...
