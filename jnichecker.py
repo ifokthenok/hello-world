@@ -483,12 +483,12 @@ def CheckStringChars(filename, file_str, error):
     if file_extension == 'c':
         m = Search('s*->\s*GetStringChars\s*\((\s*.*?\s*\,){2}\s*.*?\s*\)', file_str) 
         if m and not Search('\s*->\s*ReleaseStringChars\s*\((\s*.*?\s*\,){2}\s*.*?\s*\)', file_str):
-            error(filename, Pos2LineNumber(file_str, m.start()), 'string', 4,
+            error(filename, Pos2LineNumber(file_str, m.start()), 'string', 3,
                 r"'GetStringChars' is called, better to call 'ReleaseStringChars' to avoid memory leak") 
     elif file_extension == 'cpp': 
         m = Search('\s*->\s*GetStringChars\s*\((\s*.*?\s*\,){1}\s*.*?\s*\)', file_str)
         if m and not Search('\s*->\s*ReleaseStringChars\s*\((\s*.*?\s*\,){1}\s*.*?\s*\)', file_str):
-            error(filename, Pos2LineNumber(file_str, m.start()), 'string', 4,
+            error(filename, Pos2LineNumber(file_str, m.start()), 'string', 3,
                 r"'GetStringChars' is called, better to call 'ReleaseStringChars' to avoid memory leak")  
   
 def CheckStringUTFChars(filename, file_str, error):
@@ -499,12 +499,12 @@ def CheckStringUTFChars(filename, file_str, error):
     if file_extension == 'c':
         m = Search('s*->\s*GetStringUTFChars\s*\((\s*.*?\s*\,){2}\s*.*?\s*\)', file_str) 
         if m and not Search('\s*->\s*ReleaseStringUTFChars\s*\((\s*.*?\s*\,){2}\s*.*?\s*\)', file_str):
-            error(filename, Pos2LineNumber(file_str, m.start()), 'string', 4,
+            error(filename, Pos2LineNumber(file_str, m.start()), 'string', 3,
                 r"'GetStringUTFChars' is called, better to call 'ReleaseStringUTFChars' to avoid memory leak") 
     elif file_extension == 'cpp': 
         m = Search('\s*->\s*GetStringUTFChars\s*\((\s*.*?\s*\,){1}\s*.*?\s*\)', file_str)
         if m and not Search('\s*->\s*ReleaseStringUTFChars\s*\((\s*.*?\s*\,){1}\s*.*?\s*\)', file_str):
-            error(filename, Pos2LineNumber(file_str, m.start()), 'string', 4,
+            error(filename, Pos2LineNumber(file_str, m.start()), 'string', 3,
                 r"'GetStringUTFChars' is called, better to call 'ReleaseStringUTFChars' to avoid memory leak")
    
 def CheckMonitor(filename, file_str, error):       
@@ -539,13 +539,13 @@ def CheckArrayElements(filename, file_str, error):
     if file_extension == 'c':
         m = Search(get_c_p, file_str) 
         if m and not Search(release_c_p, file_str):
-            error(filename, Pos2LineNumber(file_str, m.start()), 'array', 4,
+            error(filename, Pos2LineNumber(file_str, m.start()), 'array', 3,
                  r"'Get" + m.group(1) + r"ArrayElements' is called, "
                  + r"better to call 'Release" + m.group(1) + r"ArrayElements' to avoid memory leak") 
     elif file_extension == 'cpp': 
         m = Search(get_cpp_p, file_str)
         if m and not Search(release_cpp_p, file_str):
-            error(filename, Pos2LineNumber(file_str, m.start()), 'array', 4,
+            error(filename, Pos2LineNumber(file_str, m.start()), 'array', 3,
                  r"'Get" + m.group(1) + r"ArrayElements' is called, "
                  + r"better to call 'Release" + m.group(1) + r"ArrayElements' to avoid memory leak")
                 
@@ -584,13 +584,13 @@ def CheckJNIFunctions(filename, file_str, error):
         if m and (not Search(include_p, file_str)):
             function_name = m.group(1) 
             error(filename, Pos2LineNumber(file_str, m.start()), 'jni-function', 1,
-               r"JNI function '" + function_name + r"' is invoked, suggest adding '#include<jni.h>'") 
+               r"JNI function '" + function_name + r"' is invoked, suggest adding '#include <jni.h>'") 
     if file_extension == 'c':
         m = Search(call_p, file_str)
         if m and (not Search(include_p, file_str)):
             function_name = m.group(1) 
             error(filename, Pos2LineNumber(file_str, m.start()), 'jni-function', 1,
-               r"JNI function '" + function_name + r"' is invoked, suggest adding '#include<jni.h>'")             
+               r"JNI function '" + function_name + r"' is invoked, suggest adding '#include <jni.h>'")             
     
 def FindCloseSymbol(s, search_pos, open_symbol, close_symbol):
     search_str = s[search_pos:]
@@ -800,8 +800,10 @@ def main():
                                            codecs.getreader('utf8'),
                                            codecs.getwriter('utf8'),
                                            'replace') 
-    _context.PrintError()
-    sys.exit(_context.ErrorCount() > 0)
+    if _context.ErrorCount() > 0:
+        _context.PrintError()
+
+    sys.exit(_context.ErrorCount())
 
 if __name__ == '__main__':
     main()
