@@ -1,14 +1,31 @@
-3.1 静态测试方法
-3.2 动态测试方法
-3.2.1使用
-3.2.2设计
-用户功能：查看帮助，输入文件，指定级别，查看结果
-执行流程：参数解析，文件预处理，错误检查，输误输出
-3.2.3实现
-实现原则：使用简单，跨平台，易扩展
-功能类图：几个类的解析说明
-交互时序：类之间交互说明
-实现算法：主函数，参数解析，预处理，错误检查（重点），错误输出
-3.3本章小结
+JNI动态模拟（MOCK）方法
+
+http://www.martinfowler.com/articles/mocksArentStubs.html
+http://zh.wikipedia.org/wiki/%E6%A8%A1%E6%8B%9F%E5%AF%B9%E8%B1%A1
+
+1). 模拟对象与桩
+伪对象（Fake）： 模拟对象（Mock）, 桩（Stub）
+状态测试／行为测试
+举例说明：
+2) gtest
+3) gmock
+gtest： 断言
+举例说明（接上例）
+gmock:  Mock，断言
+举例说明（接上例）
+
+2.模拟JNIEnv和JavaVM
+
+3.jnimock的使用
+4.jnimock的设计
+5.jnimock的实现
+
+
+
+
+
+
+
+
 
 
