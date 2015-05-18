@@ -1,24 +1,17 @@
-JNI动态模拟（MOCK）方法
+JNI
+[Programming]Liang S. The Java Native Interface: Programmer's Guide and Specification[M]. Addison-Wesley Professional, 1999.
+[Safe]Tan G, Appel A W, Chakradhar S, et al. Safe Java native interface[C]. Proceedings of IEEE International Symposium on Secure Software Engineering. 2006: 97-106.
+[Performance]Lee S, Jeon J W. Evaluating performance of Android platform using native C for embedded systems[C]//Control Automation and Systems (ICCAS), 2010 International Conference on. IEEE, 2010: 1160-1163.
+[Static check: four kinds of error]Kondoh G, Onodera T. Finding bugs in Java native interface programs[C]. Proceedings of the 2008 international symposium on Software testing and analysis. ACM, 2008: 109-118.
+[Cache class/field/method]Lee Y H, Chandrian P, Li B. Efficient java native interface for android based mobile devices[C]. Trust, Security and Privacy in Computing and Communications (TrustCom), 2011 IEEE 10th International Conference on. IEEE, 2011: 1202-1209.
+[Benchmark native code vs dalvik code]Lin C M, Lin J H, Dow C R, et al. Benchmark dalvik and native code for android system[C]//Innovations in Bio-inspired Computing and Applications (IBICA), 2011 Second International Conference on. IEEE, 2011: 320-323.
 
-http://www.martinfowler.com/articles/mocksArentStubs.html
-http://zh.wikipedia.org/wiki/%E6%A8%A1%E6%8B%9F%E5%AF%B9%E8%B1%A1
-
-1). 模拟对象与桩
-伪对象（Fake）： 模拟对象（Mock）, 桩（Stub）
-状态测试／行为测试
-举例说明：
-2) gtest
-3) gmock
-gtest： 断言
-举例说明（接上例）
-gmock:  Mock，断言
-举例说明（接上例）
-
-2.模拟JNIEnv和JavaVM
-
-3.jnimock的使用
-4.jnimock的设计
-5.jnimock的实现
+Java ClassLoader
+thread local storage
+pthread_create
+UTF8/Unicode
+python/regex
+java native/c++ static override
 
 
 
