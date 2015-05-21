@@ -26,13 +26,22 @@ class _Context(object):
         if filename not in self.errors_by_file:
             self.errors_by_file[filename] = [(linenum, message, category, confidence)]
         else:
-            self.errors_by_file[filename].append((linenum, message, category, confidence))
-    
+            self.errors_by_file[filename].append((linenum, message, category, confidence))   
+
     def PrintError(self):
         for filename in self.errors_by_file:
             for err in sorted(self.errors_by_file[filename], key=lambda err_item: err_item[0]):  
-                sys.stderr.write('%s:%s:  %s  [%s] [%d]\n' % ((filename,) +  err))
+				err_str = '%s:%s:  %s  [%s] [%d]\n' % ((filename,) +  err)
+				n = 0
+				for c in err_str:
+					n = n + 1
+					if c == ' ' and n > 65:
+						sys.stderr.write('\n')
+						n = 0
+					sys.stderr.write(c)   
         sys.stderr.write('Total error: %d\n' % self.error_count)
+
+ 
                
 _context = _Context()
 _regexp_compile_cache = {}
